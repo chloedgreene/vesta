@@ -1,5 +1,0 @@
-#define MOD_JOINT_PEOPLE	0
-#define SFX_FIRE_EXPLOSION	29
-#define MSL_NSONGS	1
-#define MSL_NSAMPS	30
-#define MSL_BANKSIZE	31

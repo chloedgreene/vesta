@@ -33,8 +33,8 @@ SDIMAGE		:= image.bin
 # Source code paths
 # -----------------
 
-SOURCEDIRS	:= source
-INCLUDEDIRS	:=
+SOURCEDIRS	:= src
+INCLUDEDIRS	:= 
 GFXDIRS		:= graphics
 BINDIRS		:= data
 AUDIODIRS	:= audio
@@ -75,7 +75,7 @@ endif
 # -----
 
 PREFIX		:= $(ARM_NONE_EABI_PATH)arm-none-eabi-
-CC		:= $(PREFIX)gcc
+CC		:= zig cc
 CXX		:= $(PREFIX)g++
 OBJDUMP		:= $(PREFIX)objdump
 MKDIR		:= mkdir
@@ -140,7 +140,7 @@ ASFLAGS		+= -x assembler-with-cpp $(DEFINES) $(INCLUDEFLAGS) \
 
 CFLAGS		+= -std=gnu11 $(WARNFLAGS) $(DEFINES) $(INCLUDEFLAGS) \
 		   $(ARCH) -O2 -ffunction-sections -fdata-sections \
-		   -specs=$(SPECS)
+		   -specs=$(SPECS)  -target thumb
 
 CXXFLAGS	+= -std=gnu++14 $(WARNFLAGS) $(DEFINES) $(INCLUDEFLAGS) \
 		   $(ARCH) -O2 -ffunction-sections -fdata-sections \

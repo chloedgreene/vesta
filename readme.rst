@@ -1,11 +1,12 @@
-##########################
-ROM Template (ARM9 + ARM7)
-##########################
+###################
+ROM Template (ARM9)
+###################
 
 1. Introduction
 ***************
 
-This template contains code to build a project with custom ARM9 and ARM7 code.
+This template contains code to build a project with custom ARM9 and the default
+ARM7 provided by BlocksDS SDK.
 
 Build it with the following command:
 

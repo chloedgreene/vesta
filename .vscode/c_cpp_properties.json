@@ -11,7 +11,8 @@
                 "/opt/wonderful/toolchain/gcc-arm-none-eabi/arm-none-eabi/include",
                 "/opt/wonderful/thirdparty/blocksds/core/libs/maxmod/include",
                 "/opt/wonderful/thirdparty/blocksds/core/libs/libnds/include/nds",
-                "/opt/wonderful/thirdparty/blocksds/core/libs/libnds/include"
+                "/opt/wonderful/thirdparty/blocksds/core/libs/libnds/include",
+                "${workspaceFolder}/build/data"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang",

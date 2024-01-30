@@ -11,6 +11,10 @@ ARM_NONE_EABI_PATH	?= $(WONDERFUL_TOOLCHAIN)/toolchain/gcc-arm-none-eabi/bin/
 # User config
 # ===========
 
+EMU := net.kuribo64.melonDS
+
+# Project Config
+# --------------
 NAME		:= VESTA
 
 GAME_TITLE	:= Project VESTA
@@ -35,7 +39,7 @@ GFXDIRS		:= graphics
 BINDIRS		:= data
 AUDIODIRS	:= audio
 # A single directory that is the root of NitroFS:
-NITROFSDIR	:=
+NITROFSDIR	:= 
 
 # Defines passed to all files
 # ---------------------------
@@ -221,6 +225,9 @@ dldipatch: $(ROM)
 	@echo "  DLDIPATCH $(ROM)"
 	$(V)$(BLOCKSDS)/tools/dldipatch/dldipatch patch \
 		$(BLOCKSDS)/sys/dldi_r4/r4tf.dldi $(ROM)
+
+run: $(ROM)
+	$(EMU) $(ROM)
 
 # Rules
 # -----

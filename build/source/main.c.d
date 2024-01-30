@@ -58,7 +58,7 @@ build/source/main.c.o: source/main.c \
  /opt/wonderful/thirdparty/blocksds/core/libs/libnds/include/nds/arm9/teak/tlf.h \
  /opt/wonderful/thirdparty/blocksds/core/libs/maxmod/include/maxmod9.h \
  /opt/wonderful/thirdparty/blocksds/core/libs/maxmod/include/mm_types.h \
- build/maxmod/soundbank.h build/maxmod/soundbank_bin.h \
+ source/comp_hax.h build/maxmod/soundbank.h build/maxmod/soundbank_bin.h \
  build/graphics/neon.h build/data/data_string_bin.h
 /opt/wonderful/thirdparty/blocksds/core/libs/libnds/include/nds.h:
 /opt/wonderful/thirdparty/blocksds/core/libs/libnds/include/nds/bios.h:
@@ -119,6 +119,7 @@ build/source/main.c.o: source/main.c \
 /opt/wonderful/thirdparty/blocksds/core/libs/libnds/include/nds/arm9/teak/tlf.h:
 /opt/wonderful/thirdparty/blocksds/core/libs/maxmod/include/maxmod9.h:
 /opt/wonderful/thirdparty/blocksds/core/libs/maxmod/include/mm_types.h:
+source/comp_hax.h:
 build/maxmod/soundbank.h:
 build/maxmod/soundbank_bin.h:
 build/graphics/neon.h:

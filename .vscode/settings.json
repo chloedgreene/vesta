@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "nds.h": "c",
+        "dswifi7.h": "c",
+        "maxmod7.h": "c",
+        "videogl.h": "c",
+        "video.h": "c",
+        "neon.h": "c"
+    }
+}

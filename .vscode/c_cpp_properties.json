@@ -12,7 +12,8 @@
                 "/opt/wonderful/thirdparty/blocksds/core/libs/maxmod/include",
                 "/opt/wonderful/thirdparty/blocksds/core/libs/libnds/include/nds",
                 "/opt/wonderful/thirdparty/blocksds/core/libs/libnds/include",
-                "${workspaceFolder}/build/data"
+                "${workspaceFolder}/build/data",
+                "/opt/blocksds/external/nitro-engine/include/"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang",

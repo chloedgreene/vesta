@@ -58,8 +58,23 @@ build/source/main.c.o: source/main.c \
  /opt/wonderful/thirdparty/blocksds/core/libs/libnds/include/nds/arm9/teak/tlf.h \
  /opt/wonderful/thirdparty/blocksds/core/libs/maxmod/include/maxmod9.h \
  /opt/wonderful/thirdparty/blocksds/core/libs/maxmod/include/mm_types.h \
- source/comp_hax.h build/maxmod/soundbank.h build/maxmod/soundbank_bin.h \
- build/graphics/neon.h build/data/data_string_bin.h
+ /opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NEMain.h \
+ /opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NE2D.h \
+ /opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NETexture.h \
+ /opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NEPalette.h \
+ /opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NEPolygon.h \
+ /opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NEMain.h \
+ /opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NEAnimation.h \
+ /opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NECamera.h \
+ /opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NEDisplayList.h \
+ /opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NEFAT.h \
+ /opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NEFormats.h \
+ /opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NEGeneral.h \
+ /opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NEGUI.h \
+ /opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NEModel.h \
+ /opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NEPhysics.h \
+ /opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NEText.h \
+ source/comp_hax.h
 /opt/wonderful/thirdparty/blocksds/core/libs/libnds/include/nds.h:
 /opt/wonderful/thirdparty/blocksds/core/libs/libnds/include/nds/bios.h:
 /opt/wonderful/thirdparty/blocksds/core/libs/libnds/include/nds/ndstypes.h:
@@ -119,8 +134,20 @@ build/source/main.c.o: source/main.c \
 /opt/wonderful/thirdparty/blocksds/core/libs/libnds/include/nds/arm9/teak/tlf.h:
 /opt/wonderful/thirdparty/blocksds/core/libs/maxmod/include/maxmod9.h:
 /opt/wonderful/thirdparty/blocksds/core/libs/maxmod/include/mm_types.h:
+/opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NEMain.h:
+/opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NE2D.h:
+/opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NETexture.h:
+/opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NEPalette.h:
+/opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NEPolygon.h:
+/opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NEMain.h:
+/opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NEAnimation.h:
+/opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NECamera.h:
+/opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NEDisplayList.h:
+/opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NEFAT.h:
+/opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NEFormats.h:
+/opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NEGeneral.h:
+/opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NEGUI.h:
+/opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NEModel.h:
+/opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NEPhysics.h:
+/opt/wonderful/thirdparty/blocksds/external/nitro-engine/include/NEText.h:
 source/comp_hax.h:
-build/maxmod/soundbank.h:
-build/maxmod/soundbank_bin.h:
-build/graphics/neon.h:
-build/data/data_string_bin.h:

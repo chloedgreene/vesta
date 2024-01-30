@@ -2,25 +2,20 @@
 #
 # SPDX-FileContributor: Antonio Niño Díaz, 2023
 
-export BLOCKSDS			?= /opt/blocksds/core
-export BLOCKSDSEXT		?= /opt/blocksds/external
+BLOCKSDS	?= /opt/blocksds/core
+BLOCKSDSEXT	?= /opt/blocksds/external
 
-export WONDERFUL_TOOLCHAIN	?= /opt/wonderful
+WONDERFUL_TOOLCHAIN	?= /opt/wonderful
 ARM_NONE_EABI_PATH	?= $(WONDERFUL_TOOLCHAIN)/toolchain/gcc-arm-none-eabi/bin/
 
 # User config
 # ===========
 
-EMU := net.kuribo64.melonDS
-
-# Project Config
-# --------------
-NAME		:= VESTA
-
-GAME_TITLE	:= Project VESTA
-GAME_SUBTITLE	:= Hobby Project Engine Thingy
-GAME_AUTHOR	:= chloegreene.ca
-GAME_ICON	:= icon.bmp
+NAME		:= $(shell basename $(CURDIR))
+GAME_TITLE	:= 3D template
+GAME_SUBTITLE	:= Nitro Engine example
+GAME_AUTHOR	:= github.com/AntonioND/nitro-engine
+GAME_ICON	:= $(BLOCKSDS)/sys/icon.bmp
 
 # DLDI and internal SD slot of DSi
 # --------------------------------
@@ -35,24 +30,22 @@ SDIMAGE		:= image.bin
 
 SOURCEDIRS	:= source
 INCLUDEDIRS	:=
-GFXDIRS		:= graphics
-BINDIRS		:= data
-AUDIODIRS	:= audio
-# A single directory that is the root of NitroFS:
-NITROFSDIR	:= 
+GFXDIRS		:=
+BINDIRS		:=
+AUDIODIRS	:=
+NITROFSDIR	:=
 
 # Defines passed to all files
 # ---------------------------
 
-DEFINES		:= -DFLECS_CUSTOM_BUILD -DFLECS_SYSTEM -DFLECS_NO_LOG -DNDS
+DEFINES		:=
 
 # Libraries
 # ---------
 
-LIBS		:= -lmm9 -lnds9 -lNE
-LIBDIRS		:= $(BLOCKSDS)/libs/maxmod \
-		   $(BLOCKSDS)/libs/libnds \
-		   $(BLOCKSDSEXT)/nitro-engine
+LIBS		:= -lNE -lnds9 -lc
+LIBDIRS		:= $(BLOCKSDSEXT)/nitro-engine \
+		   $(BLOCKSDS)/libs/libnds
 
 # Build artifacts
 # ---------------
@@ -115,18 +108,18 @@ SOURCES_CPP	:= $(shell find -L $(SOURCEDIRS) -name "*.cpp")
 # Compiler and linker flags
 # -------------------------
 
-ARCH		:= -mthumb -mcpu=arm946e-s+nofp
+DEFINES		+= -D__NDS__ -DARM9
 
-SPECS		:= $(BLOCKSDS)/sys/crts/ds_arm9.specs
+ARCH		:= -march=armv5te -mtune=arm946e-s
 
 WARNFLAGS	:= -Wall
 
 ifeq ($(SOURCES_CPP),)
-	LD	:= $(CC)
-	LIBS	+= -lc
+    LD		:= $(CC)
+    LIBS	+= -lc
 else
-	LD	:= $(CXX)
-	LIBS	+= -lstdc++ -lc
+    LD		:= $(CXX)
+    LIBS	+= -lstdc++ -lc
 endif
 
 INCLUDEFLAGS	:= $(foreach path,$(INCLUDEDIRS),-I$(path)) \
@@ -134,21 +127,27 @@ INCLUDEFLAGS	:= $(foreach path,$(INCLUDEDIRS),-I$(path)) \
 
 LIBDIRSFLAGS	:= $(foreach path,$(LIBDIRS),-L$(path)/lib)
 
-ASFLAGS		+= -x assembler-with-cpp $(DEFINES) $(INCLUDEFLAGS) \
-		   $(ARCH) -ffunction-sections -fdata-sections \
-		   -specs=$(SPECS)
+ASFLAGS		+= -x assembler-with-cpp $(DEFINES) $(ARCH) \
+		   -mthumb -mthumb-interwork $(INCLUDEFLAGS) \
+		   -ffunction-sections -fdata-sections
 
-CFLAGS		+= -std=gnu11 $(WARNFLAGS) $(DEFINES) $(INCLUDEFLAGS) \
-		   $(ARCH) -O2 -ffunction-sections -fdata-sections \
-		   -specs=$(SPECS)
+CFLAGS		+= -std=gnu11 $(WARNFLAGS) $(DEFINES) $(ARCH) \
+		   -mthumb -mthumb-interwork $(INCLUDEFLAGS) -O2 \
+		   -ffunction-sections -fdata-sections \
+		   -fomit-frame-pointer
 
-CXXFLAGS	+= -std=gnu++14 $(WARNFLAGS) $(DEFINES) $(INCLUDEFLAGS) \
-		   $(ARCH) -O2 -ffunction-sections -fdata-sections \
+CXXFLAGS	+= -std=gnu++14 $(WARNFLAGS) $(DEFINES) $(ARCH) \
+		   -mthumb -mthumb-interwork $(INCLUDEFLAGS) -O2 \
+		   -ffunction-sections -fdata-sections \
 		   -fno-exceptions -fno-rtti \
-		   -specs=$(SPECS)
+		   -fomit-frame-pointer
 
-LDFLAGS		:= $(ARCH) $(LIBDIRSFLAGS) -Wl,-Map,$(MAP) $(DEFINES) \
-		   -Wl,--start-group $(LIBS) -Wl,--end-group -specs=$(SPECS)
+LDFLAGS		:= -mthumb -mthumb-interwork $(LIBDIRSFLAGS) \
+		   -Wl,-Map,$(MAP) -Wl,--gc-sections -nostdlib \
+		   -T$(BLOCKSDS)/sys/crts/ds_arm9.mem \
+		   -T$(BLOCKSDS)/sys/crts/ds_arm9.ld \
+		   -Wl,--no-warn-rwx-segments \
+		   -Wl,--start-group $(LIBS) -lgcc -Wl,--end-group
 
 # Intermediate build files
 # ------------------------
@@ -205,7 +204,7 @@ $(ROM): $(ELF)
 
 $(ELF): $(OBJS)
 	@echo "  LD      $@"
-	$(V)$(LD) -o $@ $(OBJS) $(LDFLAGS)
+	$(V)$(LD) -o $@ $(OBJS) $(BLOCKSDS)/sys/crts/ds_arm9_crt0.o $(LDFLAGS)
 
 $(DUMP): $(ELF)
 	@echo "  OBJDUMP   $@"
@@ -226,9 +225,6 @@ dldipatch: $(ROM)
 	@echo "  DLDIPATCH $(ROM)"
 	$(V)$(BLOCKSDS)/tools/dldipatch/dldipatch patch \
 		$(BLOCKSDS)/sys/dldi_r4/r4tf.dldi $(ROM)
-
-run: $(ROM)
-	$(EMU) $(ROM)
 
 # Rules
 # -----

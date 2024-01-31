@@ -52,7 +52,7 @@ DEFINES		:= -DFLECS_CUSTOM_BUILD -DFLECS_SYSTEM -DFLECS_NO_LOG -DNDS
 LIBS		:= -lmm9 -lnds9 -lNE
 LIBDIRS		:= $(BLOCKSDS)/libs/maxmod \
 		   $(BLOCKSDS)/libs/libnds \
-		   $(BLOCKSDSEXT)/nitro-engine
+		   $(BLOCKSDSEXT)/nitro-engine \
 
 # Build artifacts
 # ---------------
@@ -75,7 +75,7 @@ endif
 # -----
 
 PREFIX		:= $(ARM_NONE_EABI_PATH)arm-none-eabi-
-CC		:= zig cc
+CC		:= $(PREFIX)gcc
 CXX		:= $(PREFIX)g++
 OBJDUMP		:= $(PREFIX)objdump
 MKDIR		:= mkdir
@@ -140,7 +140,7 @@ ASFLAGS		+= -x assembler-with-cpp $(DEFINES) $(INCLUDEFLAGS) \
 
 CFLAGS		+= -std=gnu11 $(WARNFLAGS) $(DEFINES) $(INCLUDEFLAGS) \
 		   $(ARCH) -O2 -ffunction-sections -fdata-sections \
-		   -specs=$(SPECS)  -target thumb
+		   -specs=$(SPECS)
 
 CXXFLAGS	+= -std=gnu++14 $(WARNFLAGS) $(DEFINES) $(INCLUDEFLAGS) \
 		   $(ARCH) -O2 -ffunction-sections -fdata-sections \

@@ -14,7 +14,7 @@
                 "/opt/wonderful/thirdparty/blocksds/core/libs/libnds/include",
                 "${workspaceFolder}/build/data",
                 "/opt/blocksds/external/nitro-engine/include/",
-                "${workspaceFolder}/source/game/"
+                "${workspaceFolder}/src/game/"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang",

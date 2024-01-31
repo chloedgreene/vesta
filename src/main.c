@@ -8,7 +8,6 @@
 //fix compiler errors and shite
 #include "comp_hax.h"
 
-//Include `Rust Stuff!
 NE_Camera *Camera;
 
 void setupCamera(){
@@ -24,7 +23,7 @@ void Draw3DScene(void)
 {
   NE_CameraUse(Camera);
   NE_ViewRotate(90,0,0);
-  NE_ViewMove(0,-2,0);
+  NE_ViewMove(0,0,0);
   NE_PolyBegin(GL_QUAD);
       NE_PolyColor(NE_Red);    // Set next vertices color
       NE_PolyVertex(-1, 1, 0); // Send vertex
@@ -43,7 +42,15 @@ int main(){
   irqSet(IRQ_HBLANK, NE_HBLFunc);
 
   NE_Init3D();
-  NE_InitConsole();
+  NE_TextureSystemReset(0, 0, NE_VRAM_AB); // makes C and D unused
+  //Now we Setup 
+  videoSetModeSub(MODE_5_2D);
+  bgInitSub(2, BgType_Bmp16, BgSize_B16_256x256, 0, 0);
+  vramSetBankC(VRAM_C_SUB_BG_0x06200000);
+
+  for(int i =0; i == 256*192; i++){
+    VRAM_C[i] = RGB15(15,0,15);
+  }
 
 	setupCamera();
 
